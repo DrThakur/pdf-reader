@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PDF Reader App</title>
+  </head>
+  <body>
+    <h1>PDF Reader App</h1>
+
+    <!-- File Upload Form -->
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="pdfFile" accept=".pdf" />
+      <input type="submit" value="Upload PDF" />
+    </form>
+
+    <!-- Keyword Search Form -->
+    <form action="/search" method="post">
+      <input type="text" name="keywords" placeholder="Enter keywords" />
+
+      <!-- Add this hidden input to pass pdfText -->
+      <input type="hidden" name="pdfText" value="<%= pdfText %>" />
+
+      <input type="submit" value="Search" />
+    </form>
+
+    <% if (data) { %>
+    <h2>Results:</h2>
+    <ul>
+      <% data.forEach((result) => { %>
+      <li><%= result %></li>
+      <% }); %>
+    </ul>
+    <% } %>
+  </body>
+</html>
